@@ -3,7 +3,7 @@ package com.taiger.nlp.cleanser.interfaces;
 import java.util.Map;
 import java.util.Set;
 
-import com.taiger.nlp.cleanser.model.Pair;
+import com.taiger.nlp.cleanser.tmp.Pair;
 
 
 
@@ -17,8 +17,8 @@ public interface DictionaryDataAccess {
 	
 	boolean checkWord (String word);
 	
-	Set<String> getCorrection (String word);
+	Set<String> getCorrection (String knownFail);
 	
-	int setCorrection (String word, String correction);
+	void setCorrection (String word, String knownFail);
 	
 }

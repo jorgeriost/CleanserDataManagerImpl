@@ -7,22 +7,24 @@ import javax.transaction.Transactional;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
-import com.taiger.nlp.cleanser.model.Rule;
+import com.taiger.nlp.cleanser.model.OcrRule;
 
 
-public interface RuleRepository extends PagingAndSortingRepository<Rule, String>{
+public interface RuleRepository extends PagingAndSortingRepository<OcrRule, String>{
 	
 	@Transactional
-	List<Rule> removeByA(@Param("a") String a);
+	List<OcrRule> removeByA(@Param("a") String a);
 	
 	@Transactional
-	List<Rule> removeByB(@Param("b") String b);
+	List<OcrRule> removeByB(@Param("b") String b);
 	
 	@Transactional
-	List<Rule> removeByAAndB (@Param("a") String a, @Param("b") String b);
+	List<OcrRule> removeByAAndB (@Param("a") String a, @Param("b") String b);
 	
-	List<Rule> findByA (String a);
+	List<OcrRule> findByA (String a);
 	
-	List<Rule> findByB (String b);
+	List<OcrRule> findByB (String b);
+	
+	List<OcrRule> findByAAndB (String a, String b);
 
 }

@@ -1,13 +1,10 @@
 package com.taiger.nlp.cleanser.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -31,8 +28,9 @@ public class Correction {
 	String id;
 	
 	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property="id", scope=Stage.class)
-	@ManyToMany(mappedBy = "corrections", fetch = FetchType.EAGER)
-	List<Stage> stages;
+	@ManyToOne
+    @JoinColumn(name="stage_id")
+	Stage stage;
 	
 	String word;
 	
@@ -43,7 +41,7 @@ public class Correction {
 		id = "";
 		word = "";
 		knownError = "";
-		stages = new ArrayList<>();
+		stage  = new Stage();
 	}
 
 }

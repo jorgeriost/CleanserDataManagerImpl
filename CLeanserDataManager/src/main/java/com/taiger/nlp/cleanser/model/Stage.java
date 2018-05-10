@@ -3,14 +3,10 @@ package com.taiger.nlp.cleanser.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -34,10 +30,7 @@ public class Stage {
 	String id;
 	
 	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property="id", scope=Correction.class)
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(	name = "stage_correction", 
-				joinColumns = @JoinColumn(name = "stage_id", referencedColumnName = "id"), 
-				inverseJoinColumns = @JoinColumn(name = "correction_id", referencedColumnName = "id"))
+	@OneToMany(mappedBy = "stage")
 	List<Correction> corrections;
 	
 	String type;

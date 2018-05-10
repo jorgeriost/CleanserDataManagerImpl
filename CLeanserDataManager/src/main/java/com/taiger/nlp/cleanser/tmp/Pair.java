@@ -1,4 +1,4 @@
-package com.taiger.nlp.cleanser.model;
+package com.taiger.nlp.cleanser.tmp;
 
 public class Pair<K, V> {
 	
