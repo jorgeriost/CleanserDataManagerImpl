@@ -63,6 +63,26 @@ public class DictionaryDataAccessImpl implements DictionaryDataAccess {
 		return this;
 	}
 	
+	public void setStage (DocType docType) {
+		Assert.notNull(docType,"'docType' must not be null");
+		Assert.hasText(docType.getType(), "Type must have text");
+		Assert.hasText(docType.getSubtype(), "Subtype must have text");
+		Assert.hasText(docType.getCountry(), "Country must have text");
+		Assert.hasText(docType.getLanguage(), "Language must have text");
+		Assert.notNull(this.stageRepo,"'stageRepo' must not be null");
+		
+		Stage nstage = stageRepo.findByTypeAndSubtypeAndCountryAndLanguage(docType.getType(), docType.getSubtype(), docType.getCountry(), docType.getLanguage());
+		if (nstage != null) return;
+		else nstage = new Stage ();
+		nstage.setType(docType.getType());
+		nstage.setSubtype(docType.getSubtype());
+		nstage.setLanguage(docType.getLanguage());
+		nstage.setCountry(docType.getCountry());
+		
+		this.stageRepo.save(nstage);
+		
+	}
+	
 	/**
 	 * Gets all words in the dictionary for the used stage
 	 */

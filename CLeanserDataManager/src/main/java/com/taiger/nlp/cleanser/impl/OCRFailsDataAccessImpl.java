@@ -38,7 +38,7 @@ public class OCRFailsDataAccessImpl implements OCRFailsDataAccess {
 		OcrRule r = rule2ocrRule(rule);
 		
 		if (checkRuleExistence(r)) {
-			return rule;
+			return null;
 		}
 		
 		r = ruleRepo.save(r);
